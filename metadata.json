@@ -1,0 +1,5 @@
+{
+  "name": "Robo AI - Wallpaper Generator",
+  "description": "A mobile-first web app for generating unique phone wallpapers. Users describe their desired vibe, and the app generates 4 high-quality variations. Features include a fullscreen preview, download, and remixing capabilities to inspire new creations.",
+  "requestFramePermissions": []
+}
