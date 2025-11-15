@@ -7,6 +7,7 @@ import { FullScreenModal } from './components/FullScreenModal';
 import { Spinner } from './components/Spinner';
 import { generateWallpapers, generateRemixPrompt } from './services/geminiService';
 import { AspectRatio } from './types';
+import { HelpModal } from './components/HelpModal';
 
 function App() {
   const [prompt, setPrompt] = useState<string>('Rainy cyberpunk lo-fi');
@@ -16,6 +17,7 @@ function App() {
   const [isRemixing, setIsRemixing] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState<boolean>(false);
 
   const executeGeneration = useCallback(async (generationPrompt: string) => {
     if (!generationPrompt || isLoading) return;
@@ -81,7 +83,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 font-sans antialiased">
-      <Header />
+      <Header onOpenHelp={() => setIsHelpModalOpen(true)} />
       <main className="container mx-auto p-4 md:p-6">
         <div className="max-w-3xl mx-auto">
           <p className="text-center text-gray-400 mb-6">
@@ -159,6 +161,10 @@ function App() {
           onRemix={handleRemix}
           isLoading={isLoading}
         />
+      )}
+
+      {isHelpModalOpen && (
+        <HelpModal onClose={() => setIsHelpModalOpen(false)} />
       )}
     </div>
   );
